@@ -63,11 +63,12 @@ Dictionary::Iterator::Iterator(const Node* root) {
   history_.push(root);
 }
 
-bool Dictionary::Iterator::add(char c) {
+bool Dictionary::Iterator::move(char c) {
   Node* next = history_.top()->children[index(c)];
 
   if (next != nullptr) {
     history_.push(next);
+    word_.push_back(c);
     return true;
   }
   
@@ -77,6 +78,7 @@ bool Dictionary::Iterator::add(char c) {
 bool Dictionary::Iterator::back() {
   if (history_.size() >= 2) {
     history_.pop();
+    word_.pop_back();
     return true;
   }
   
@@ -89,45 +91,45 @@ Dictionary::Iterator Dictionary::iterator() const {
 
 // Test code
 
-#include <iostream>
-#include <fstream>
-
-int main(int argc, char* argv[]) {
-  using namespace std;
-
-  string input;
-  Dictionary dict;
-  
-  if (argc == 2) { // read from file
-    std::ifstream file(argv[1]);
-
-    cout << "Reading in " << argv[1] << "... ";
-    dict.readFromStream(file);
-    cout << "Done!" << endl;
-
-    while (getline(cin, input)) {
-      if (Dictionary::processWord(&input)) {
-        cout << input << " is in there " << dict.count(input) << " times" << endl;
-      }
-    }
-  }
-  else { // read from prompt
-    do {
-      getline(cin, input);
-
-      if (Dictionary::processWord(&input)) {
-        cout << input << " added, now in there " << dict.insert(input) << " times" << endl;
-      }
-    }
-    while (input != "done");
-
-    do {
-      getline(cin, input);
-
-      if (Dictionary::processWord(&input)) {
-        cout << input << " is in there " << dict.count(input) << " times" << endl;
-      }
-    }
-    while (input != "quit");
-  }
-}
+//#include <iostream>
+//#include <fstream>
+//
+//int main(int argc, char* argv[]) {
+//  using namespace std;
+//
+//  string input;
+//  Dictionary dict;
+//  
+//  if (argc == 2) { // read from file
+//    std::ifstream file(argv[1]);
+//
+//    cout << "Reading in " << argv[1] << "... ";
+//    dict.readFromStream(file);
+//    cout << "Done!" << endl;
+//
+//    while (getline(cin, input)) {
+//      if (Dictionary::processWord(&input)) {
+//        cout << input << " is in there " << dict.count(input) << " times" << endl;
+//      }
+//    }
+//  }
+//  else { // read from prompt
+//    do {
+//      getline(cin, input);
+//
+//      if (Dictionary::processWord(&input)) {
+//        cout << input << " added, now in there " << dict.insert(input) << " times" << endl;
+//      }
+//    }
+//    while (input != "done");
+//
+//    do {
+//      getline(cin, input);
+//
+//      if (Dictionary::processWord(&input)) {
+//        cout << input << " is in there " << dict.count(input) << " times" << endl;
+//      }
+//    }
+//    while (input != "quit");
+//  }
+//}

@@ -44,6 +44,7 @@ public:
   class Iterator {
     const Node* root_;
     std::stack<const Node*> history_;
+    std::string word_;
 
     Iterator(const Node* root);
 
@@ -52,10 +53,14 @@ public:
 
   public:
     /* Advance to the next character in the trie.
-     * returns false if it cannot
+     * If it cannot advance, it returns false and does nothing.
      */
-    bool add(char c);
+    bool move(char c);
     bool back();
+
+    const std::string& word() const {
+      return word_;
+    }
 
     bool isWord() const {
       return history_.top()->count > 0;
@@ -78,6 +83,10 @@ public:
   unsigned insert(const std::string& str);
 
   unsigned count(const std::string& str) const;
+
+  bool contains(const std::string& str) const {
+    return count(str) > 0;
+  }
 };
 
 #endif

@@ -2,9 +2,9 @@ CC=g++
 CFLAGS=-c -std=c++11 -Wall
 DEBUGFLAG=-DNDEBUG
 LDFLAGS=
-SOURCES=Dictionary.cpp
+SOURCES=Dictionary.cpp Anagramatic.cpp CharCounter.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=Dictionary
+EXECUTABLE=Anagramatic
 
 all: $(SOURCES) $(EXECUTABLE)
     
