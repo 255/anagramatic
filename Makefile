@@ -11,12 +11,14 @@ all: $(SOURCES) $(EXECUTABLE)
 debug: DEBUGFLAG=-DDEBUG
 debug: clean all
 
-$(EXECUTABLE): $(OBJECTS) 
+$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $(CFLAGS) $(DEBUGFLAG) $< -o $@
+	$(CC) -MMD $(CFLAGS) $(DEBUGFLAG) $< -o $@
+
+-include *.d
 
 clean:
 	rm -f $(EXECUTABLE)
-	rm -f *.o
+	rm -f *.o *.d
