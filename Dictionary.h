@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <stack>
+
 /*  A trie to store words. Store and look up words.
  *  This is not memory-friendly; each node stack-allocates an array of 26 pointers.
  */
@@ -35,6 +37,31 @@ class Dictionary {
   static unsigned inline index(char c);
 
 public:
+  class Iterator;
+
+  Iterator iterator() const;
+
+  class Iterator {
+    const Node* root_;
+    std::stack<const Node*> history_;
+
+    Iterator(const Node* root);
+
+    // give Dictionary access to the private constructor
+    friend Dictionary::Iterator Dictionary::iterator() const;
+
+  public:
+    /* Advance to the next character in the trie.
+     * returns false if it cannot
+     */
+    bool add(char c);
+    bool back();
+
+    bool isWord() const {
+      return history_.top()->count > 0;
+    }
+  };
+
   /* Prepare a word for insertion. Returns false if invalid. */
   static bool processWord(std::string* word);
 

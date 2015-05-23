@@ -24,7 +24,6 @@ Dictionary::Dictionary(std::istream& is) {
 void Dictionary::readFromStream(std::istream& is) {
   std::string word;
 
-  NextWord:
   while (is >> word) {
     if (processWord(&word)) insert(word);
   }
@@ -56,6 +55,36 @@ unsigned Dictionary::count(const std::string& str) const {
   }
 
   return cur->count;
+}
+
+// iterator
+
+Dictionary::Iterator::Iterator(const Node* root) {
+  history_.push(root);
+}
+
+bool Dictionary::Iterator::add(char c) {
+  Node* next = history_.top()->children[index(c)];
+
+  if (next != nullptr) {
+    history_.push(next);
+    return true;
+  }
+  
+  return false;
+}
+
+bool Dictionary::Iterator::back() {
+  if (history_.size() >= 2) {
+    history_.pop();
+    return true;
+  }
+  
+  return false;
+}
+
+Dictionary::Iterator Dictionary::iterator() const {
+  return Iterator(&root_);
 }
 
 // Test code
