@@ -5,3 +5,8 @@
 Session.vim
 .netrwhist
 *~
+
+# build junk
+*.out
+*.o
+*.d
