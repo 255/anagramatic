@@ -42,7 +42,6 @@ public:
   Iterator iterator() const;
 
   class Iterator {
-    const Node* root_;
     std::stack<const Node*> history_;
     std::string word_;
 
@@ -74,7 +73,7 @@ public:
 
   Dictionary(std::istream& is);
 
-  void readFromStream(std::istream& is);
+  void readFromFile(std::istream& is);
 
   /* Insert a word into the trie.
    * Only characters a-z should be used.

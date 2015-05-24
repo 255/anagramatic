@@ -8,6 +8,8 @@ banned_words = {
   'hep',
   'len',
   'lin',
+  'fahd',
+  'rte',
 }
 
 min_length = 4

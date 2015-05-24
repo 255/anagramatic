@@ -18,10 +18,10 @@ bool Dictionary::processWord(std::string* word) {
 }
 
 Dictionary::Dictionary(std::istream& is) {
-  readFromStream(is);
+  readFromFile(is);
 }
 
-void Dictionary::readFromStream(std::istream& is) {
+void Dictionary::readFromFile(std::istream& is) {
   std::string word;
 
   while (is >> word) {
