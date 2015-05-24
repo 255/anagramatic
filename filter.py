@@ -1,5 +1,7 @@
 #!/usr/bin/python3.4
 
+"""Filter a list of words to make it more sensible."""
+
 import string
 
 letters = set(string.ascii_lowercase)
@@ -46,8 +48,12 @@ def valid_short_word(word):
   else:
     return False
 
-# filter a list of words to make it more sensible
 def filter(file):
+  """
+  Read and filter all of the whitespace-separated words in a file.
+  Duplicate words, words with 'special' characters, words lacking vowels, and many two-letter 'words' are removed.
+  The word list is output in lowercase in alphabetical order, one word per line.
+  """
   valid_words = set()
 
   for word in file.read().split():
