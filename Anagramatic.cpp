@@ -1,11 +1,11 @@
-#include <string>
-#include <vector>
-
-#include <iostream>
-#include <iomanip>
-
 #include "CharCounter.h"
 #include "Dictionary.h"
+
+#include <string>
+#include <vector>
+#include <iostream>
+
+#include <fstream>
 
 static Dictionary dict;
 
@@ -66,8 +66,6 @@ void findMultiwordAnagrams(Dictionary::Iterator* it, CharCounter* counter, std::
     }
   }
 }
-
-#include <fstream>
 
 void printUsage(const char* prog_name) {
   std::cerr << "Find all anagrams of a word or phrase. The anagrams are output one per line.\n"

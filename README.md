@@ -3,7 +3,7 @@ Find all anagrams of a word or phrase. The anagrams are output one per line.
 
 ```
 Usage:
-	./test [-s] [-d DICTIONARY_FILE] PHRASE...
+	./Anagramatic [-s] [-d DICTIONARY_FILE] PHRASE...
 
 	PHRASE	The word or words of which to find anagrams.
 
