@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-c -std=c++11 -Wall
-DEBUGFLAG=-DNDEBUG
+DEBUGFLAG=-DNDEBUG -O3
 LDFLAGS=
 SOURCES=Dictionary.cpp Anagramatic.cpp CharCounter.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -8,7 +8,7 @@ EXECUTABLE=Anagramatic
 
 all: $(SOURCES) $(EXECUTABLE)
     
-debug: DEBUGFLAG=-DDEBUG
+debug: DEBUGFLAG=-DDEBUG -g
 debug: clean all
 
 $(EXECUTABLE): $(OBJECTS)
