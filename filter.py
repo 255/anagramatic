@@ -11,7 +11,19 @@ banned_words = {
   'len',
   'lin',
   'fahd',
+  'robt',
   'rte',
+  'gte',
+  'feb',
+  'mar',
+  'apr',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'sept',
+  'nov',
+  'dec',
 }
 
 min_length = 4
